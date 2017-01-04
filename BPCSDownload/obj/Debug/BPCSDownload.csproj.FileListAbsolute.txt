@@ -1,0 +1,9 @@
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\bin\Debug\BPCSDownload.exe.config
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Debug\BPCSDownload.MainForm.resources
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Debug\BPCSDownload.Properties.Resources.resources
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Debug\BPCSDownload.csproj.GenerateResource.Cache
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\bin\Debug\BPCSDownload.exe
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\bin\Debug\BPCSDownload.pdb
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\bin\Debug\Newtonsoft.Json.dll
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Debug\BPCSDownload.exe
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Debug\BPCSDownload.pdb
