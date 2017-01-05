@@ -33,6 +33,7 @@
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox = new System.Windows.Forms.TextBox();
             this.downloadButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.speedStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.downloadFilelabel = new System.Windows.Forms.Label();
-            this.setsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +65,8 @@
             this.logoutToolStripMenuItem});
             this.userToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(54, 25);
+            this.userToolStripMenuItem.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(50, 25);
             this.userToolStripMenuItem.Text = "user";
             // 
             // loginToolStripMenuItem
@@ -81,6 +82,15 @@
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.logoutToolStripMenuItem.Text = "logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+            // 
+            // setsToolStripMenuItem
+            // 
+            this.setsToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.setsToolStripMenuItem.Name = "setsToolStripMenuItem";
+            this.setsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
+            this.setsToolStripMenuItem.Size = new System.Drawing.Size(66, 25);
+            this.setsToolStripMenuItem.Text = "setting";
+            this.setsToolStripMenuItem.Click += new System.EventHandler(this.setsToolStripMenuItem_Click);
             // 
             // textBox
             // 
@@ -155,14 +165,6 @@
             this.downloadFilelabel.Name = "downloadFilelabel";
             this.downloadFilelabel.Size = new System.Drawing.Size(0, 12);
             this.downloadFilelabel.TabIndex = 7;
-            // 
-            // setsToolStripMenuItem
-            // 
-            this.setsToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
-            this.setsToolStripMenuItem.Name = "setsToolStripMenuItem";
-            this.setsToolStripMenuItem.Size = new System.Drawing.Size(74, 25);
-            this.setsToolStripMenuItem.Text = "setting";
-            this.setsToolStripMenuItem.Click += new System.EventHandler(this.setsToolStripMenuItem_Click);
             // 
             // MainForm
             // 

@@ -9,3 +9,4 @@ C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Release\BPCSDownload.cspr
 C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Release\BPCSDownload.exe
 C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Release\BPCSDownload.pdb
 C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Release\BPCSDownload.csprojResolveAssemblyReference.cache
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Release\BPCSDownload.ErrorForm.resources

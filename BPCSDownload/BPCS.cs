@@ -29,7 +29,7 @@ namespace BPCSDownload
         {
             if (File.Exists(filePath))
                 access_token = File.ReadAllText(filePath, Encoding.UTF8);
-            System.Net.ServicePointManager.DefaultConnectionLimit = 500;
+            System.Net.ServicePointManager.DefaultConnectionLimit = 800;
             Concurrency = concurrency;//并发数
         }
         private UInt64 GetFileSize(String path)
@@ -141,7 +141,7 @@ namespace BPCSDownload
                     long tmp = offset;
                     tasks[count] = Task.Factory.StartNew<byte[]>(() =>
                     {
-                        return SegmentDownload(uri, tmp, tmp + segmentSize - 1);    
+                        return DownloadTask(uri, tmp, tmp + segmentSize - 1);
                     });
                     offset += segmentSize;
                     ++count;
@@ -152,6 +152,8 @@ namespace BPCSDownload
                         {
                             if(tasks[i].Status==TaskStatus.Running)
                                 tasks[i].Wait();
+                            if (tasks[i].Result == null)
+                                return false;
                             fileStream.Write(tasks[i].Result, 0, tasks[i].Result.Length);
                         }
                         count = 0;
@@ -168,14 +170,34 @@ namespace BPCSDownload
                 fileStream.Close();
             }
         }
+        private byte[] DownloadTask(String uri, long from, long to)
+        {
+            byte[] data = null;
+            bool isOk = true;
+            while(isOk)
+            {
+                try
+                {
+                    data = SegmentDownload(uri, from, to);
+                    isOk = false;
+                }
+                catch
+                {
+                    if(new ErrorForm().ShowDialog()==DialogResult.No)
+                    {
+                        isOk = false;
+                    }
+                }
+            }
+            return data;
+        }
         private byte[] SegmentDownload(String uri,long from,long to)
         {
             HttpWebRequest request = HttpWebRequest.Create(uri) as HttpWebRequest;
             request.Method = "GET";
+            request.Timeout = 10000;
             if (to >= totalSize)
                 to = totalSize-1;
-            //if (from > to)
-            //    return new byte[0];
             request.AddRange(from, to);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             using (Stream readStream = response.GetResponseStream())
@@ -190,8 +212,8 @@ namespace BPCSDownload
                     //progressEvent(downloadSize+offset, totalSize);
                 }
                 response.Close();
-                //request.Abort();
-                //request = null;
+                request.Abort();
+                request = null;
                 downloadSize += count;
                 progressEvent(downloadSize, totalSize);
                 return buffer;
