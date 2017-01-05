@@ -14,12 +14,15 @@ namespace BPCSDownload
     {
         private BPCS bpcs;
         private DateTime startTime;
+        private SettingForm settingForm;
+        private const uint concurrency = 40;//默认并发数
         public MainForm()
         {
             InitializeComponent();
             //init
             Control.CheckForIllegalCrossThreadCalls = false;
-            bpcs = new BPCS();
+            bpcs = new BPCS(concurrency);
+          
             //判断是否已经登录
             if(bpcs.isValidate())
             {
@@ -29,8 +32,14 @@ namespace BPCSDownload
             }
             else
                 logoutToolStripMenuItem.Enabled = false;
-        }
 
+            settingForm = new SettingForm(bpcs.Concurrency);
+            settingForm.ConcurrencyChangedEvent = new SettingForm.ConcurrencyChangedEventHander(ConcurrencyChanged);
+        }
+        private void ConcurrencyChanged(uint concurrency)
+        {
+            bpcs.Concurrency = concurrency;
+        }
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(bpcs.Login())
@@ -109,14 +118,15 @@ namespace BPCSDownload
             double totalSeconds = (DateTime.Now - startTime).TotalSeconds;
             speedStatusLabel.Text = SpeedToString(value / totalSeconds);
             //防止溢出(progressBar int)
-            if(maxnum>int.MaxValue)
+            if (maxnum > int.MaxValue)
             {
                 value /= 100;
                 maxnum /= 100;
             }
             progressBar.Maximum = (int)maxnum;
             progressBar.Value = (int)value;
-            statusLabel.Text = value*100 / maxnum + "%";
+            statusLabel.Text = value * 100 / maxnum + "%";
+            
         }
         private String SpeedToString(double speed)
         {
@@ -127,13 +137,18 @@ namespace BPCSDownload
             else if (speed < (1 << 20))
             {
                 speed /= (1 << 10);
-                return String.Format("{0} kb/s",(int)speed);
+                return String.Format("{0} Kb/s",(int)speed);
             }
             else
             {
                 speed /= (1 << 20);
-                return String.Format("{0} mb/s",(int)speed);
+                return String.Format("{0} Mb/s",Math.Round(speed,2));
             }
+        }
+
+        private void setsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settingForm.ShowDialog(this);
         }
     }
 }

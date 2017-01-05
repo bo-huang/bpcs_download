@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using System.Windows.Forms;
 
 namespace BPCSDownload
 {
@@ -21,12 +22,15 @@ namespace BPCSDownload
         //当前下载字节
         long downloadSize;
         long totalSize;
-        public BPCS()
+        //每次下载的字节数（和进度条相关）
+        private const int segmentSize = 1 << 21;
+        public uint Concurrency { get; set; }
+        public BPCS(uint concurrency)
         {
             if (File.Exists(filePath))
                 access_token = File.ReadAllText(filePath, Encoding.UTF8);
-            //默认此处为2？？（晕啊，还真是这个问题！！！）
-            System.Net.ServicePointManager.DefaultConnectionLimit = 100;
+            System.Net.ServicePointManager.DefaultConnectionLimit = 500;
+            Concurrency = concurrency;//并发数
         }
         private UInt64 GetFileSize(String path)
         {
@@ -47,8 +51,6 @@ namespace BPCSDownload
                     JArray ja = JArray.Parse(jo["list"].ToString());
                     UInt64 size = Convert.ToUInt64(ja[0]["size"].ToString());
                     response.Close();
-                    request.Abort();
-                    request = null;
                     return size;
                 }
             }
@@ -97,8 +99,6 @@ namespace BPCSDownload
                         }
                     }
                     response.Close();
-                    request.Abort();
-                    request = null;
                     return fileList;
                 }
             }
@@ -115,18 +115,24 @@ namespace BPCSDownload
             string directory = GetDirectory(desktopPath + file.Path);
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
-            FileStream fileStream = new FileStream(directory + "\\" + Path.GetFileName(file.Path),FileMode.Create);
+            string filePath = directory + "\\" + Path.GetFileName(file.Path);
+            if(File.Exists(filePath))
+            {
+                if (DialogResult.No == MessageBox.Show("The file allready exists,do you want to override it?",
+                    "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                    return true;
+            }
+            FileStream fileStream = new FileStream(filePath,FileMode.Create);
             downloadSize = 0;
             totalSize = (long)file.Size;
             try
             {
-                //先分四个线程下载
-                int threadNum = 4;
-                //每次下载的字节数
-                int segmentSize = 1 << 24;
                 int count =0;
                 long offset = 0;
-                Task<byte[]>[] tasks = new Task<byte[]>[threadNum];
+                //防止正在下载该文件时，Concurrency被更改
+                //如果Concurrency变大，下面的循环会数组越界
+                uint concurrency = Concurrency;
+                Task<byte[]>[] tasks = new Task<byte[]>[concurrency];
                 while(offset<totalSize)
                 {
                     //晕啊，此处必须用tmp保存offset的值
@@ -139,7 +145,7 @@ namespace BPCSDownload
                     });
                     offset += segmentSize;
                     ++count;
-                    if(offset>=totalSize||count==threadNum)
+                    if (offset >= totalSize || count == concurrency)
                     {
                         //等待下载完
                         for(int i=0;i<count;++i)
@@ -181,12 +187,13 @@ namespace BPCSDownload
                 while (offset < count)
                 {
                     offset += readStream.Read(buffer, offset, count - offset);
-                    progressEvent(downloadSize+offset, totalSize);
+                    //progressEvent(downloadSize+offset, totalSize);
                 }
                 response.Close();
-                request.Abort();
-                request = null;
+                //request.Abort();
+                //request = null;
                 downloadSize += count;
+                progressEvent(downloadSize, totalSize);
                 return buffer;
             }
         }

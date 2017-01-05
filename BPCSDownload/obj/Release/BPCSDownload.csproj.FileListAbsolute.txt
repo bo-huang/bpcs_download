@@ -1,0 +1,11 @@
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\bin\Release\BPCSDownload.exe.config
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\bin\Release\BPCSDownload.exe
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\bin\Release\BPCSDownload.pdb
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\bin\Release\Newtonsoft.Json.dll
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Release\BPCSDownload.MainForm.resources
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Release\BPCSDownload.Properties.Resources.resources
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Release\BPCSDownload.SettingForm.resources
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Release\BPCSDownload.csproj.GenerateResource.Cache
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Release\BPCSDownload.exe
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Release\BPCSDownload.pdb
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Release\BPCSDownload.csprojResolveAssemblyReference.cache

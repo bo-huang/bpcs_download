@@ -40,8 +40,9 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.downloadFilelabel = new System.Windows.Forms.Label();
             this.speedStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.downloadFilelabel = new System.Windows.Forms.Label();
+            this.setsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +50,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userToolStripMenuItem});
+            this.userToolStripMenuItem,
+            this.setsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(295, 29);
@@ -140,6 +142,11 @@
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // speedStatusLabel
+            // 
+            this.speedStatusLabel.Name = "speedStatusLabel";
+            this.speedStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // downloadFilelabel
             // 
             this.downloadFilelabel.AutoSize = true;
@@ -149,13 +156,17 @@
             this.downloadFilelabel.Size = new System.Drawing.Size(0, 12);
             this.downloadFilelabel.TabIndex = 7;
             // 
-            // speedStatusLabel
+            // setsToolStripMenuItem
             // 
-            this.speedStatusLabel.Name = "speedStatusLabel";
-            this.speedStatusLabel.Size = new System.Drawing.Size(0, 17);
+            this.setsToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.setsToolStripMenuItem.Name = "setsToolStripMenuItem";
+            this.setsToolStripMenuItem.Size = new System.Drawing.Size(74, 25);
+            this.setsToolStripMenuItem.Text = "setting";
+            this.setsToolStripMenuItem.Click += new System.EventHandler(this.setsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
+            this.AcceptButton = this.downloadButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(295, 180);
@@ -198,6 +209,7 @@
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.Label downloadFilelabel;
         private System.Windows.Forms.ToolStripStatusLabel speedStatusLabel;
+        private System.Windows.Forms.ToolStripMenuItem setsToolStripMenuItem;
     }
 }
 

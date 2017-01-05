@@ -7,3 +7,5 @@ C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\bin\Debug\BPCSDownload.pdb
 C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\bin\Debug\Newtonsoft.Json.dll
 C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Debug\BPCSDownload.exe
 C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Debug\BPCSDownload.pdb
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Debug\BPCSDownload.csprojResolveAssemblyReference.cache
+C:\Users\bohuang\Desktop\BPCSDownload\BPCSDownload\obj\Debug\BPCSDownload.SettingForm.resources
